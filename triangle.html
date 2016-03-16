@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform float theta;
+void main(){
+
+    float x = sin(theta * length(vPosition));
+    float y = cos(theta * length(vPosition));
+    
+    gl_Position.x = vPosition.x * y - vPosition.y * x;
+    gl_Position.y = vPosition.x * x + vPosition.y * y;
+    gl_Position.z = 0.0;
+    gl_Position.w = 1.0;
+}
+</script>
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+void main() {
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+</script>
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="triangle.js"></script>
+</head>
+<body>
+    <title>Triangle</title> 
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops... your browser doesn't support the HTML5 canvas element"
+    </canvas>
+        <p>
+        <form action="">
+            
+            <p>Nivel Atual: <label id="nivel_val">0</label></p>
+            
+<input id="botao" type="checkbox" name="vehicle" value="Bike" onChange= "render()">Pintar<br>
+<p>
+    0<input name="slider" type="range" min="0" max="7" step="1" value="0" onChange = "sliderLvl(this.value)">7
+</p>
+<p id="sliderAmount"></p>
+
+</form> 
+        </p>
+</body>
+</html>
